@@ -5,10 +5,12 @@
     <router-link to='/login'><button>로그인</button></router-link>
     <router-link to='/join'><button>회원가입</button></router-link>
     <router-link to='/board'><button>게시판</button></router-link> 
+    <router-link to='/boardinsert'><button>게시판 글쓰기</button></router-link>
     <hr />
     <!-- 컴포넌트 부분을 넣어주는 역할 -->
     <router-view></router-view>
-      </div>
+    <!-- 여기에 footer 넣어도 교체안됨! -->
+  </div>
 </template>
 
 <script>

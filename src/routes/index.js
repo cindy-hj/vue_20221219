@@ -13,13 +13,15 @@ import HomePage from '@/components/HomePage.vue';
 import LoginPage from '@/components/LoginPage.vue';
 import JoinPage from '@/components/JoinPage.vue';
 import BoardPage from '@/components/BoardPage.vue';
+import BoardInsertPage from '@/components/BoardInsertPage.vue';
 
 // [{},{},{}] 자바스크립트이므로 배열형태 인것!
 const routes = [
     {path : "/", component:HomePage}, // localhost:8080/ => HomePage
     {path : "/login", component:LoginPage},
     {path : "/join", component:JoinPage}, //localhost:8080/join => JoinPage
-    {path : "/board", component:BoardPage}
+    {path : "/board", component:BoardPage}, 
+    {path : "/boardinsert", component:BoardInsertPage}
 ];
 
 const router = createRouter({ //주소 체계를 어떻게 쓸꺼냐.. 샵 없는걸로!
