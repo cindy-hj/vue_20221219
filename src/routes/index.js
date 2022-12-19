@@ -1,0 +1,30 @@
+//  localhose:8080/login
+//  localhose:8080/join
+
+//  localhost:8080/#/login
+//  localhost:8080/#/join
+//  두가지 방식!
+
+//  cmd에서 설치한 라이브러리를 가져와서 적용
+import {   createRouter, createWebHistory   } from 'vue-router';
+
+//  내가 만든 컴포넌트 가져오기
+import HomePage from '@/components/HomePage.vue';
+import LoginPage from '@/components/LoginPage.vue';
+import JoinPage from '@/components/JoinPage.vue';
+import BoardPage from '@/components/BoardPage.vue';
+
+// [{},{},{}] 자바스크립트이므로 배열형태 인것!
+const routes = [
+    {path : "/", component:HomePage}, // localhost:8080/ => HomePage
+    {path : "/login", component:LoginPage},
+    {path : "/join", component:JoinPage}, //localhost:8080/join => JoinPage
+    {path : "/board", component:BoardPage}
+];
+
+const router = createRouter({ //주소 체계를 어떻게 쓸꺼냐.. 샵 없는걸로!
+    history : createWebHistory(),
+    routes : routes
+});
+
+export default router;
