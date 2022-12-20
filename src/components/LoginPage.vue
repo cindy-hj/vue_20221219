@@ -61,7 +61,6 @@ export default {
         border  : 1px solid #cccccc;
         margin  : 0px auto;
     }
-
     .lbl {
         display : inline-block;
         width   : 100px;

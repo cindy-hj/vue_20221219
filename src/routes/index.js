@@ -1,5 +1,5 @@
-//  localhose:8080/login
-//  localhose:8080/join
+//  localhost:8080/login
+//  localhost:8080/join
 
 //  localhost:8080/#/login
 //  localhost:8080/#/join
@@ -14,6 +14,9 @@ import LoginPage from '@/components/LoginPage.vue';
 import JoinPage from '@/components/JoinPage.vue';
 import BoardPage from '@/components/BoardPage.vue';
 import BoardInsertPage from '@/components/BoardInsertPage.vue';
+import BoardContentPage from '@/components/BoardContentPage.vue';
+import FormPage from '@/components/FormPage.vue';
+import JoinPage1 from '@/components/JoinPage1.vue';
 
 // [{},{},{}] 자바스크립트이므로 배열형태 인것!
 const routes = [
@@ -21,7 +24,10 @@ const routes = [
     {path : "/login", component:LoginPage},
     {path : "/join", component:JoinPage}, //localhost:8080/join => JoinPage
     {path : "/board", component:BoardPage}, 
-    {path : "/boardinsert", component:BoardInsertPage}
+    {path : "/boardinsert", component:BoardInsertPage},
+    {path : "/boardcontent", component:BoardContentPage},
+    {path : "/form", component:FormPage},
+    {path : "/join1", component:JoinPage1},
 ];
 
 const router = createRouter({ //주소 체계를 어떻게 쓸꺼냐.. 샵 없는걸로!
