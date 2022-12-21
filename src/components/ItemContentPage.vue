@@ -69,23 +69,6 @@ export default {
             // 그래서 먼저 보여주는것...! 화면을 빨리 보여주고... 데이터 오류나는 부분에는 if문 처리 하는것. 
         });
 
-        const handleDelete = async() => {
-            // const result = confirm ('삭제 할까요?');
-            if(confirm('삭제할까요?')) {
-                const url=`/item101/delete.json?no=${state.no}`;
-                const headers={"Content-Type":"application/json"};
-                const body = {}
-            
-                const {data} = await axios.delete(url, {headers:headers, data:body});
-                console.log(data);
-            
-                if(data.status === 200) {
-                    alert('삭제 되었습니다.')
-                    router.push({path:"/item"}) 
-                }
-            }   
-        }
-
         const handleData = async() => {
             const url =`/item101/selectone.json?no=${state.no}`;
             const headers = {"Content-Type":"application/json"};
@@ -104,6 +87,25 @@ export default {
         const handlePrevPage = () => {
             router.go(-1);
         }
+
+        const handleDelete = async() => {
+            // const result = confirm ('삭제 할까요?');
+            if(confirm('삭제할까요?')) {
+                const url=`/item101/delete.json?no=${state.no}`;
+                const headers={"Content-Type":"application/json"};
+                const body = {}
+            
+                const {data} = await axios.delete(url, {headers:headers, data:body});
+                console.log(data);
+            
+                if(data.status === 200) {
+                    alert('삭제 되었습니다.')
+                    router.push({path:"/item"}) 
+                }
+            }   
+        }
+
+        
 
         const handleUpdate = async() => {
             const url = `/item101/update.json?no=${state.no}`;
