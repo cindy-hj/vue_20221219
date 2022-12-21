@@ -70,7 +70,7 @@
         <hr />
         <div class="item">
             <label class="lbl"></label>
-            <button>회원가입</button>
+            <button @click="handleJoin()">회원가입</button>
             <button>로그인</button>
             <button>홈으로</button>
         </div>
@@ -113,12 +113,47 @@ export default {
             { value: 'javascript' },
             { value: 'vue' },
         ]
+        const handleJoin = () => {
+            if(state.id.length <= 0) {
+                alert('아이디를 입력하세요.');
+                return false;
+            }
+            if(state.pw.length <= 0) {
+                alert('암호를 입력하세요.');
+                return false;
+            }
+            if(state.pw1.length <= 0) {
+                alert('암호를 다시 입력하세요.');
+                return false;
+            }
+            if(state.pw !== state.pw1) {
+                alert('입력한 암호를 확인하세요.');
+                return false;
+            }
+            if(state.name.length <= 0) {
+                alert('이름을 입력하세요.');
+                return false;
+            }
+            if(state.num.length <= 0) {
+                alert('연락처를 입력하세요.');
+                return false;
+            }
+            if(state.num1.length <= 0) {
+                alert('연락처를 입력하세요.');
+                return false;
+            }
+            if(state.num2.length <= 0) {
+                alert('연락처를 입력하세요.');
+                return false;
+            }
+        }
 
         return {
             state,
             radio,
             email1,
-            interest
+            interest,
+            handleJoin
         }
     }
 }
@@ -133,7 +168,7 @@ export default {
         padding: 20px;
     }
     .item {
-        
+        margin: 5px;
     }
     .lbl {
         display: inline-block;

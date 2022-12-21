@@ -14,8 +14,7 @@
         <hr />
         <!-- checkbox 일일히 쓰지 말고 반복문 돌림. 4번 반복됨. -->
         <div v-for="tmp of checklist" :key="tmp" style="display: inline-block">
-            <input type="checkbox" :value="tmp.value" 
-                v-model="state.check"/>{{ tmp.text }}
+            <input type="checkbox" :value="tmp.value" v-model="state.check"/>{{ tmp.text }}
                 <!-- : 이거 빠지니까 모든 값이 하나로 묶여서 체크됨 -->
                 <!-- <input type="checkbox" value="A" /> A -->
                 <!-- div 문단이 4번 반복된것 -->

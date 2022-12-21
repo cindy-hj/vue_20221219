@@ -24,9 +24,8 @@
             <tbody>
                 <tr v-for="tmp of board.rows" :key="tmp">
                     <td>{{ tmp._id }}</td>
-                    <td @click="handleContent( tmp._id )" 
-                            style="cursor:pointer;">{{ tmp.title }}</td> 
-                            <!-- 클릭가능 한것 처럼 보여줌. 손가락 모양으로 -->
+                    <td @click="handleContent( tmp._id )" style="cursor:pointer;">{{ tmp.title }}</td> 
+                    <!-- 클릭가능 한것 처럼 보여줌. 손가락 모양으로 -->
                     <!-- a태그를 쓰면 html과 똑같이 엔터 치면 깜빡임... 뷰를 쓰는 이유가 없다! 컴포넌트만 바꾸려면? router사용 -->
                     <!-- 주소를 바꾸는 이유? 컴포넌트만 교체하는거라서 의미가 없지만 f5눌렀을때 유지하기 위해서 주소를 따로 주는것! -->
                     <td>{{ tmp.writer }}</td>
@@ -93,7 +92,6 @@ import { useRouter } from 'vue-router';
             return {
                 board,
                 handleContent
-                // handleHit
             };
         }
     }

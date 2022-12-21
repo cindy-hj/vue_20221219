@@ -6,7 +6,7 @@
         <div class="item">
             <label class="lbl">제목</label>
             <input type="text" v-model="title" />
-            <!-- // toRefs로 하면 state.title을 title로 써도 됨! -->
+            <!-- return에서 toRefs로 하면 state.title을 title로 써도 됨! -->
         </div>
 
         <div class="item">
@@ -34,14 +34,15 @@ import { useRouter } from 'vue-router';
 
 export default {
     setup () {
+        const router = useRouter(); 
+
+        // 상태 변수
         const state = reactive({
             title   : '',
             content : '',
             writer  : ''
         });
         
-        const router = useRouter(); 
-
         const handleInsert = async() => {
             const url = '/board101/insert.json' ;
             const headers = {"Content-Type":"application/json"} ;
@@ -55,9 +56,10 @@ export default {
 
             if(data.status === 200 ) {
                 alert('글쓰기 성공!');
+                // 목록페이지로 이동하기
                 router.push({path:'/board'});
                 // <router-link to='/board'></router-link> 이건 a태그의 역할. 클릭해야 이동하는것
-                // router.push({path:'', query:{}})는 location.href역할. 차이는 리로딩 하지 않고 컴포넌트만 교체 한다는것.
+                // router.push({path:'/board', query:{}})는 location.href역할. 차이는 리로딩 하지 않고 컴포넌트만 교체 한다는것.
             }
         }
 

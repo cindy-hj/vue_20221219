@@ -33,8 +33,8 @@ export default {
         const state = reactive({
             no : Number(route.query.no),
             row : '',   
-            prev : Number(),
-            next : ''   
+            prev: '',
+            next: ''
         })
         // BoardPage에서 query:{no:tmp}로 보낸걸 받음
 
@@ -44,14 +44,16 @@ export default {
         };
 
         const handlePrev = () => {
-            router.push({path:`/boardcontent?no=${state.prev}`});
-            // 이건... 오류도 안나는걸 보면 prev값이 null인가?
-            // router.push({path:'/boardcontent', query:{prev}});
-            // 위에껀 오류가 나는데... prev가 정의되지 않았다고 함. 결국 prev에 어떻게 값을 넣어주느냐를 모르는것...!
+            console.log(state.prev);
+            router.push({path:"/boardcontent", query:{no:state.prev}});
+            state.no = state.prev // 이전글 주소로 바뀐 번호(prev)를 주소창의 no에 넣어줌
+            handleData() ; // 같은 페이지는 재로딩이 안되서 수동으로 함수를 호출해서 재로딩 시켜야함.
         }
 
+        // 다음글은 보드컨텐트1로 보내고 보드 컨텐트 1에서 바로 다음글 주소 넘어가게 라우터 이용해서 짜보자.
+        // 확실히 이전글 방법보다는 느림... 
         const handleNext = () => {
-            router.push({path:`/boardcontent?no=${state.next}`});
+            router.push({path:"/boardcontent1", query:{no1:state.next}});
         }
 
         const handleData = async() => {

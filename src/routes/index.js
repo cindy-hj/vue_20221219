@@ -17,6 +17,12 @@ import BoardInsertPage from '@/components/BoardInsertPage.vue';
 import BoardContentPage from '@/components/BoardContentPage.vue';
 import FormPage from '@/components/FormPage.vue';
 import JoinPage1 from '@/components/JoinPage1.vue';
+import ImagePage from '@/components/ImagePage.vue';
+import ItemPage from '@/components/ItemPage.vue';
+import ItemInsertPage from '@/components/ItemInsertPage.vue';
+import BoardContent1Page from '@/components/BoardContent1Page.vue'; 
+import ItemContentPage from '@/components/ItemContentPage.vue'; 
+
 
 // [{},{},{}] 자바스크립트이므로 배열형태 인것!
 const routes = [
@@ -28,6 +34,12 @@ const routes = [
     {path : "/boardcontent", component:BoardContentPage},
     {path : "/form", component:FormPage},
     {path : "/join1", component:JoinPage1},
+    {path : "/image", component:ImagePage},
+    {path : "/item", component:ItemPage},
+    {path : "/iteminsert", component:ItemInsertPage},
+    {path : "/boardcontent1", component:BoardContent1Page},
+    {path : "/itemcontent", component:ItemContentPage},
+
 ];
 
 const router = createRouter({ //주소 체계를 어떻게 쓸꺼냐.. 샵 없는걸로!
