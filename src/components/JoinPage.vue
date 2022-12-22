@@ -4,27 +4,29 @@
         {{ user }}
         <div>
             <label class="lbl">아이디</label>
-            <input type="text" v-model="user.userid"/>
+            <input type="text" ref="uid" v-model="user.userid" @keyup="handleIDCheck()" />
+            <label class="lbl" v-html="user.idcheck"></label> 
+            <!-- // html태그 작성한것 해석해서 출력 -->
         </div>
         <div>
             <label class="lbl">암호</label>
-            <input type="password" v-model="user.userpw"/>
+            <input type="password" ref="upw" v-model="user.userpw" />
         </div>
         <div>
             <label class="lbl">암호 확인</label>
-            <input type="password" v-model="user.userpw1"/>
+            <input type="password" ref="upw1" v-model="user.userpw1" />
         </div>
         <div>
             <label class="lbl">이름</label>
-            <input type="text" v-model="user.username"/>
+            <input type="text" ref="uname" v-model="user.username" />
         </div>
         <div>
             <label class="lbl">나이</label>
-            <input type="number" v-model="user.userage"/>
+            <input type="number" ref="uage" v-model="user.userage" />
         </div>
         <div>
             <label class="lbl">이메일</label>
-            <input type="text" v-model="user.useremail"/>
+            <input type="text" ref="uemail" v-model="user.useremail" />
             <label>@</label>
             <select v-model="user.useremail1">
                 <option>이메일 주소 선택</option>
@@ -40,50 +42,71 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import axios from 'axios';
+import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
     setup () {
         
+        const router = useRouter();
+
         // 상태변수
         const user = reactive({
-            userid   : '',
-            userpw   : '',
-            userpw1  : '',
-            username : '',
-            userage : '',
-            useremail: '',
-            useremail1 : '이메일 주소 선택'
+            userid      : '',
+            userpw      : '',
+            userpw1     : '',
+            username    : '',
+            userage     : '',
+            useremail   : '',
+            useremail1  : '이메일 주소 선택',
+            
+            idcheck     : '<label style="color:#000000">중복 확인</label>'
         });
+        
+        // 묶어서 표현하고 싶다...어떻게?
+        const uid = ref();
+        const upw = ref();
+        const upw1 = ref();
+        const uname = ref();
+        const uage = ref();
+        const uemail = ref();
 
         // 함수들
-        const handleJoin = () => {
+        const handleJoin = async() => {
             if(user.userid === '') {
                 alert('아이디를 입력하세요.')
+                uid.value.focus();
                 return false;
             }
             if(user.userpw === '') {
                 alert('암호를 입력하세요.')
+                upw.value.focus();
                 return false;
             }
             if(user.userpw1 === '') {
                 alert('암호를 다시 입력하세요.')
+                upw1.value.focus();
                 return false;
             }
             if(user.userpw !== user.userpw1) {
                 alert('암호를 확인 하세요.')
+                upw1.value.focus();
                 return false;
             }
             if(user.username === '') {
                 alert('이름를 입력하세요.')
+                uname.value.focus();
                 return false;
             }
             if(user.userage === '') {
                 alert('나이를 입력하세요.')
+                uage.value.focus();
                 return false;
             }
             if(user.useremail === '') {
                 alert('이메일을 입력하세요.')
+                uemail.value.focus();
                 return false;
             }
             if(user.useremail1 === '이메일 주소 선택') {
@@ -91,12 +114,62 @@ export default {
                 return false;
             }
             // 유효성 성공하면 백엔드 연동
+            const url = `/member101/insert.json`;
+            const headers = {"Content-Type":"application/json"};
+            const body = {
+                id      : user.userid,
+                pw      : user.userpw,
+                name    : user.username,
+                email   : `${user.useremail}@${user.useremail1}`, // 변수와 문자를 동시에 입력하고 싶다면 이런 꼴로!
+                age     : user.userage
+            };
+            const { data } = await axios.post(url, body, {headers}); 
+            console.log(data);
+            if(data.status === 200) {
+                alert('회원 가입 성공!');
+                router.push({path:'/'});            
+            }
         }
+
+        // 아이디를 입력할때 마다 호출되는 함수
+        const handleIDCheck = async() => {
+            console.log('handleIDCheck');
+
+            // user.idcheck = '중복확인';  이렇게 걸면 else 두개를 생략 가능 하지만 중간중간(백엔드로 왔다갔다 하는 시간차) 중복확인이 떠서 거슬림...
+            // 프론트에서 검증 다하고 백엔드로 날리는게 맞다. 아니면 백엔드에서 부하 걸려!
+            if(user.userid.length > 0) { // 내용 입력
+                const url=`/member101/idcheck.json?id=${user.userid}`;
+                const headers={"Content-Type":"application/json"};
+                const { data } = await axios.get(url, {headers});
+                console.log(data);    
+                if(data.status === 200) { // 백엔드 정상적인가?
+                    if(data.result === 0) { // 사용 가능 위치
+                        user.idcheck = '<label style="color:green">사용 가능</label>';
+                    }
+                    else if(data.result === 1) { // 사용 불가 위치
+                        user.idcheck = '<label style="color:red">사용 불가</label>';
+                    }
+                }
+                else { // 정상적이지 않을 경우 
+                    user.idcheck = '<label style="color:#000000">중복 확인</label>';
+                }                      
+            }
+            else { // 내용 입력하지 않음
+                user.idcheck = '<label style="color:#000000">중복 확인</label>';
+            } 
+        };
 
         // 템플릿에서 사용하기 위한 리턴(변수, 함수 등..)
         return {
             user,
-            handleJoin
+            handleJoin,
+            uid,
+            upw,
+            upw1,
+            uname,
+            uage,
+            uemail,
+            handleIDCheck
         }
     }
 }
@@ -112,5 +185,6 @@ export default {
     .lbl {
         display: inline-block;
         width: 100px;
+        padding: 5px;
     }
 </style>

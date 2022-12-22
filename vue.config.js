@@ -18,6 +18,11 @@ module.exports = defineConfig({
         target : 'http://1.234.5.158:23000',
         changeOrigin : true,
         logLevel : 'debug'
+      },
+      '/member101' : {
+        target : 'http://1.234.5.158:23000',
+        changeOrigin : true,
+        logLevel : 'debug'
       }
     }
   }

@@ -22,13 +22,21 @@ import ItemPage from '@/components/ItemPage.vue';
 import ItemInsertPage from '@/components/ItemInsertPage.vue';
 import BoardContent1Page from '@/components/BoardContent1Page.vue'; 
 import ItemContentPage from '@/components/ItemContentPage.vue'; 
+import MyPage from '@/components/MyPage.vue';
+import LogoutPage from '@/components/LogoutPage.vue';
+import StorePage from '@/components/StorePage.vue';
 
 
 // [{},{},{}] 자바스크립트이므로 배열형태 인것!
 const routes = [
     {path : "/", component:HomePage}, // localhost:8080/ => HomePage
+
     {path : "/login", component:LoginPage},
     {path : "/join", component:JoinPage}, //localhost:8080/join => JoinPage
+
+    {path : "/mypage", component:MyPage},
+    {path : "/logout", component:LogoutPage},
+
     {path : "/board", component:BoardPage}, 
     {path : "/boardinsert", component:BoardInsertPage},
     {path : "/boardcontent", component:BoardContentPage},
@@ -39,6 +47,7 @@ const routes = [
     {path : "/iteminsert", component:ItemInsertPage},
     {path : "/boardcontent1", component:BoardContent1Page},
     {path : "/itemcontent", component:ItemContentPage},
+    {path : "/store", component:StorePage},
 
 ];
 

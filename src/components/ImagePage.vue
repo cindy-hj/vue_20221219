@@ -35,7 +35,7 @@ export default {
         // read, writer로 사용. 사용자가 입력하면 바뀜!
         const state = reactive({
             username : '',
-            userfile : null,
+            userfile : null, // 보여지는거는 imageurl이지만 실제 백엔드로 보내주는 역할은 usefile이 하는것!!
             imageurl : require('../assets/imgs/logo.png'), // 아무것도 안했을때 기본으로 뜨는 이미지
         });
 
