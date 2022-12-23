@@ -21,6 +21,7 @@
     <router-link to='/image'><button>Image 실습</button></router-link>
     <router-link to='/item'><button>물품목록</button></router-link>
     <router-link to='/store'><button>store 실습</button></router-link>
+    <router-link to='/comp'><button>comp 실습</button></router-link>
     <hr />
     <!-- 컴포넌트 부분을 넣어주는 역할 -->
     <router-view></router-view>

@@ -4,16 +4,16 @@
         {{ user }} 
         <div>
             <label class="lbl">아이디</label>
-            <input type="text" ref="userid" v-model="user.userid" />
+            <el-input type="text" size="small" style="width:200px" ref="userid" v-model="user.userid"></el-input>
         </div>
 
         <div>
             <label class="lbl">암호</label>
-            <input type="password" ref="userpw" v-model="user.userpw" />
+            <el-input type="password" size="small" style="width:200px" ref="userpw" v-model="user.userpw"></el-input>
         </div>
 
         <div>
-            <button @click="handleLogin()">로그인</button>
+            <el-button type='info' size="small" @click="handleLogin()">로그인</el-button>
         </div>
     </div>
 

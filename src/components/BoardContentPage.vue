@@ -10,9 +10,9 @@
             <p>작성자 : {{ state.row.writer }}</p>
             <p>조회수 : {{ state.row.hit }}</p>
             <p>등록일 : {{ state.row.regdate }}</p>
-            <button @click="handleBack()">이전</button>
-            <button @click="handlePrev()">이전글</button>
-            <button @click="handleNext()">다음글</button>
+            <el-button type="info" size="small" @click="handleBack()">이전</el-button>
+            <el-button type="info" size="small" @click="handlePrev()">이전글</el-button>
+            <el-button type="info" size="small" @click="handleNext()">다음글</el-button>
         </div>
     </div>
 </template>

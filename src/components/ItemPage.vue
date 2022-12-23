@@ -4,7 +4,15 @@
         <router-link :to ="{ path :'/iteminsert' }">
             <button>물품등록</button>
         </router-link>
-        <table border="1">
+        <el-table :data="state.rows" style="width: 100%; cursor: pointer;" @row-click="handleContent1">
+            <el-table-column prop="_id" label="물품번호" width="100" />
+            <el-table-column prop="name" label="물품명" width="180" />
+            <el-table-column prop="content" label="물품내용" width="250" />
+            <el-table-column prop="price" label="물품가격" width="180" />
+            <el-table-column prop="quantity" label="물품수량" width="180" />
+            <el-table-column prop="regdate" label="등록일" width="180" />
+        </el-table>
+        <!-- <table border="1">
             <thead>
                 <tr>
                     <th>물품번호</th>
@@ -25,7 +33,7 @@
                     <td>{{ tmp.regdate }}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 </template>
 
@@ -43,6 +51,12 @@ export default {
         const state = reactive({
             rows: null, // 물품목록 받을 변수
         });
+
+        const handleContent1 = (a) => {
+            console.log(a._id);
+            handleContent(a._id);
+        };
+
         // 함수 호출 되어야 함.
         const handleData = async () => {
             const url = `/item101/selectlist.json`; // board101로 시작된게 아니라서 config에서 인식이 안됨. 보통은 서버:8080/api/borad101 식으로 통일됨.
@@ -67,7 +81,8 @@ export default {
         });
         return {
             state,
-            handleContent
+            handleContent,
+            handleContent1
         };
     }
 }

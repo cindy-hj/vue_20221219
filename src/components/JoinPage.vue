@@ -4,39 +4,37 @@
         {{ user }}
         <div>
             <label class="lbl">아이디</label>
-            <input type="text" ref="uid" v-model="user.userid" @keyup="handleIDCheck()" />
+            <el-input type="text" size="small" style="width:200px" ref="uid" v-model="user.userid" @keyup="handleIDCheck()" />
             <label class="lbl" v-html="user.idcheck"></label> 
             <!-- // html태그 작성한것 해석해서 출력 -->
         </div>
         <div>
             <label class="lbl">암호</label>
-            <input type="password" ref="upw" v-model="user.userpw" />
+            <el-input type="password" size="small" style="width:200px" ref="upw" v-model="user.userpw" />
         </div>
         <div>
             <label class="lbl">암호 확인</label>
-            <input type="password" ref="upw1" v-model="user.userpw1" />
+            <el-input type="password" size="small" style="width:200px" ref="upw1" v-model="user.userpw1" />
         </div>
         <div>
             <label class="lbl">이름</label>
-            <input type="text" ref="uname" v-model="user.username" />
+            <el-input type="text" size="small" style="width:200px" ref="uname" v-model="user.username" />
         </div>
         <div>
             <label class="lbl">나이</label>
-            <input type="number" ref="uage" v-model="user.userage" />
+            <el-input-number size="small" style="width:200px" :min="0" ref="uage" v-model="user.userage" />
         </div>
         <div>
             <label class="lbl">이메일</label>
-            <input type="text" ref="uemail" v-model="user.useremail" />
+            <el-input type="text" size="small" style="width:200px" ref="uemail" v-model="user.useremail" />
             <label>@</label>
-            <select v-model="user.useremail1">
-                <option>이메일 주소 선택</option>
-                <option>google.com</option>
-                <option>naver.com</option>
-                <option>daum.net</option>
-            </select>
+            <el-select v-model="user.useremail1">
+                <el-option v-for="tmp of email" :key="tmp" :value="tmp.value"/>
+                <!-- 시키는대로 반복문을 돌려야 하는구만 -->
+            </el-select>
         </div>
         <div>
-            <button @click="handleJoin()">회원 가입</button>
+            <el-button type='info' size="small" @click="handleJoin()">회원 가입</el-button>
         </div>
     </div>
 </template>
@@ -48,6 +46,11 @@ import { useRouter } from 'vue-router';
 
 export default {
     setup () {
+        const email = [
+            { value : 'google.com' },
+            { value : 'naver.com' },
+            { value : 'daum.net' }
+        ];        
         
         const router = useRouter();
 
@@ -57,7 +60,7 @@ export default {
             userpw      : '',
             userpw1     : '',
             username    : '',
-            userage     : '',
+            userage     : 0,
             useremail   : '',
             useremail1  : '이메일 주소 선택',
             
@@ -99,7 +102,7 @@ export default {
                 uname.value.focus();
                 return false;
             }
-            if(user.userage === '') {
+            if(user.userage <= 0) {
                 alert('나이를 입력하세요.')
                 uage.value.focus();
                 return false;
@@ -169,7 +172,8 @@ export default {
             uname,
             uage,
             uemail,
-            handleIDCheck
+            handleIDCheck,
+            email
         }
     }
 }

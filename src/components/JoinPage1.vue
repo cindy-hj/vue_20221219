@@ -70,9 +70,9 @@
         <hr />
         <div class="item">
             <label class="lbl"></label>
-            <button @click="handleJoin()">회원가입</button>
-            <button>로그인</button>
-            <button>홈으로</button>
+            <el-button type="info" size="small" @click="handleJoin()">회원가입</el-button>
+            <el-button type="info" size="small">로그인</el-button>
+            <el-button type="info" size="small">홈으로</el-button>
         </div>
 
     </div>

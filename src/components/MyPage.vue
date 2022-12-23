@@ -16,7 +16,7 @@
                 <input type="text" v-model="state.user.age" />
             </div>
             <div>
-                <button @click="handleUpdate()">정보수정</button>
+                <el-button type="info" size="small" @click="handleUpdate()">정보수정</el-button>
             </div>
         </div>
         <div v-show="state.menu === 2">
@@ -31,7 +31,7 @@
                 <input type="password" v-model="state.newpw1" placeholder="변경암호확인" />
             </div>
             <div>
-                <button @click="handleUpdatePW()">비밀번호 변경</button>
+                <el-button type="info" size="small" @click="handleUpdatePW()">비밀번호 변경</el-button>
             </div> 
         </div>
     </div>

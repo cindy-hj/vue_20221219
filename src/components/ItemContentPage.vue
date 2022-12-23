@@ -12,15 +12,15 @@
         <!-- // show는 숨기는 개념 -->
         <div v-show="state.div===1" v-if="state.row"> 
             <p>글번호    : {{ state.row._id }}</p>
-            <p>물품사진  : <img :src="state.row.img" style="width: 50px; height: 50px;" /></p>
+            <p>물품사진  : <img :src="state.row.img" style="width: 200px;" /></p>
             <p>물품명    : {{ state.row.name }}</p>
             <p>물품 설명 : {{ state.row.content }}</p>
             <p>물품 가격 : {{ state.row.price }}</p>
             <p>물품 수량 : {{ state.row.quantity }}</p>
             <p>등록일    : {{ state.row.regdate }}</p>
-            <button @click="state.div = 2">수정</button>
-            <button @click="handleDelete()">삭제</button>
-            <button @click="handlePrevPage()">이전페이지</button>
+            <el-button type="info" size="small" @click="state.div = 2">수정</el-button>
+            <el-button type="info" size="small" @click="handleDelete()">삭제</el-button>
+            <el-button type="info" size="small" @click="handlePrevPage()">이전페이지</el-button>
         </div>
         
         <div v-show="state.div===2" v-if="state.row1">
@@ -40,8 +40,8 @@
                 <input type="text" v-model="state.row1.quantity" />
             </div>
 
-            <button @click="handleUpdate()">수정완료</button>
-            <button @click="state.div = 1">취소</button>
+            <el-button type="info" size="small" @click="handleUpdate()">수정완료</el-button>
+            <el-button type="info" size="small" @click="state.div = 1">취소</el-button>
         </div>
     </div>
 </template>

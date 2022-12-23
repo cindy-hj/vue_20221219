@@ -29,7 +29,7 @@
 
         <div class="item">
             <label class="lbl"></label>
-            <button @click="handleInsert()">등록하기</button>
+            <el-button type="info" size="small" @click="handleInsert()">등록하기</el-button>
         </div>
     </div>
 </template>

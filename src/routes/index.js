@@ -25,6 +25,7 @@ import ItemContentPage from '@/components/ItemContentPage.vue';
 import MyPage from '@/components/MyPage.vue';
 import LogoutPage from '@/components/LogoutPage.vue';
 import StorePage from '@/components/StorePage.vue';
+import CompPage from '@/components/CompPage.vue';
 
 
 // [{},{},{}] 자바스크립트이므로 배열형태 인것!
@@ -48,6 +49,7 @@ const routes = [
     {path : "/boardcontent1", component:BoardContent1Page},
     {path : "/itemcontent", component:ItemContentPage},
     {path : "/store", component:StorePage},
+    {path : "/comp", component:CompPage},
 
 ];
 
