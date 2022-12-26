@@ -21,6 +21,7 @@
         </menu-3-page>
 
         <menu-4-page>
+            <!-- //찍히는건 default 위치에 내용은 component에 있는걸 가져오는걸. 데이터를 component에 넣어놨으니까 -->
             <template #default="scope">
                 {{ scope }}
                 <!-- 데이터 잘 오는지 확인 -->
